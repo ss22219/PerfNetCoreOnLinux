@@ -11,9 +11,7 @@ ENV COMPlus_PerfMapEnabled 1
 ENV COMPlus_EnableEventLog 1
 
 # Create, restore and build a new HelloWorld application.
-RUN mkdir helloWorld && cd helloWorld && dotnet new console && \
-	echo "using System;\n\nnamespace ConsoleApplication\n{\n\tpublic class Program\n\t{\n\t\tpublic static void Main(string[] args)\n\t\t{\n\t\t\tConsole.WriteLine(\"This application will allocate new objects in a loop forever.\");\n\t\t\twhile(true){ object o = new object(); }\n\t\t}\n\t}\n}" > Program.cs && \
-	dotnet restore && dotnet build -c Release
+RUN mkdir helloWorld && cd helloWorld && dotnet new console && echo "using System;\n\nnamespace ConsoleApplication\n{\n\tpublic class Program\n\t{\n\t\tpublic static void Main(string[] args)\n\t\t{\n\t\t\tConsole.WriteLine(\"This application will allocate new objects in a loop forever.\");\n\t\t\twhile(true){ object o = new object(); }\n\t\t}\n\t}\n}" > Program.cs && dotnet restore && dotnet build -c Release
 
 # Run the app.
 CMD cd /helloWorld && dotnet run -c Release
